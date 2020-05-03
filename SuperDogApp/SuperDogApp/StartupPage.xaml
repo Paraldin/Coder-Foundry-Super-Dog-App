@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BackgroundColor="DarkRed"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="SuperDogApp.StartupPage">
+
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <Image Source="SuperDog.png" HeightRequest="200" Aspect="AspectFit" WidthRequest="200"/>
+        <Label Text="Welcome to the Superdog App!" TextColor="White"
+           HorizontalOptions="Center" />
+        <Button Text="See Conferences" Clicked="Button_Clicked" HorizontalOptions="Center"/>
+    </StackLayout>
+
+</ContentPage>

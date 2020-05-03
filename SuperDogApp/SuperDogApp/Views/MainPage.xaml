@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Padding="15"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Blue"
+             x:Name="contentPage"
+             x:Class="SuperDogApp.Views.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="0">
+                <StackLayout BindingContext="{Binding MathAmounts}">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Chosen Event" HorizontalOptions="StartAndExpand"/>
+                        <Picker x:Name="eventPicker" HorizontalOptions="EndAndExpand" WidthRequest="200" SelectedIndexChanged="eventPicker_SelectedIndexChanged"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Total Attendance"/>
+                        <Label x:Name="totalField" HorizontalOptions="EndAndExpand" Text="{Binding Total, StringFormat='{0:n0}'}"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="Black" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal">
+                       <Label Text="Most Visited Year"/>
+                        <Label x:Name="mostField" HorizontalOptions="EndAndExpand" Text="{Binding Most, StringFormat='{0:n0}'}"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="Black" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Least Visited Year"/>
+                        <Label x:Name="leastField" HorizontalOptions="EndAndExpand" Text="{Binding Least, StringFormat='{0:n0}'}"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="Black" HeightRequest="1"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Average Attendance"/>
+                        <Label x:Name="averageField" HorizontalOptions="EndAndExpand" Text="{Binding Average, StringFormat='{0:n0}'}"/>
+                 </StackLayout>
+                    <BoxView BackgroundColor="Black" HeightRequest="1"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Populate List" Command="{Binding RefreshList}"/>
+                <Button Text="Add Event" Command="{Binding CreateComicCon}"/>
+            </StackLayout>
+            <Frame Grid.Row="2" CornerRadius="10" BackgroundColor="DarkRed">
+                <ScrollView>
+                    <ListView x:Name="eventList" ItemTapped="eventList_ItemTapped" HasUnevenRows="True">
+                        <ListView.Header>
+                            <Frame Padding="2" CornerRadius="5">
+                                <StackLayout Orientation="Horizontal" Margin="5,0,5,0">
+                                    <Label Text="Event" HorizontalOptions="StartAndExpand" Margin="40,0,0,0"/>
+                                    <Label Text="State" HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="Attendance" HorizontalOptions="EndAndExpand"/>
+                                    <Label Text="Date" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" />
+                                </StackLayout>
+                            </Frame>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Create Another" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.CreateComicConHistory}" CommandParameter="{Binding .}" />
+                                        <MenuItem Text="Edit" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.EditComicCon}" CommandParameter="{Binding .}" />
+                                        <MenuItem Text="See Map" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.MapComicCon}" CommandParameter="{Binding .}" />
+                                        <MenuItem Text="Delete" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.DeleteComicCon}" CommandParameter="{Binding .}" IsDestructive="True" />
+                                    </ViewCell.ContextActions>
+                                    <Frame BackgroundColor="Yellow" CornerRadius="10" Margin="0,5,0,5" Padding="0">
+                                        <StackLayout Orientation="Horizontal" Margin="5,0,5,0">
+                                            <Label Text="{Binding EventName}" WidthRequest="100" Margin="5,0,0,0"/>
+                                            <Label Text="{Binding State}" HorizontalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding Attendance, StringFormat='{0:n0}'}" HorizontalOptions="EndAndExpand"/>
+                                            <Label Text="{Binding Date, StringFormat='{0:MM/yyyy}'}" HorizontalOptions="EndAndExpand" Margin="0,0,5,0" />
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                </ScrollView>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
