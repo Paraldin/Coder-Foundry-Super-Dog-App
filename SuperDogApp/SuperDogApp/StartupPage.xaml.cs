@@ -16,6 +16,7 @@ namespace SuperDogApp
         public StartupPage()
         {
             InitializeComponent();
+            _ = App.Database;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace SuperDogApp.Views
         private MainPageViewModel ViewModel;
         public MainPage()
         {
-            ViewModel = new MainPageViewModel(Navigation);
+            ViewModel = new MainPageViewModel(Navigation, this);
             BindingContext = ViewModel;
             InitializeComponent();
             eventList.ItemsSource = ViewModel.ComicCons;
@@ -39,6 +39,11 @@ namespace SuperDogApp.Views
         private void eventList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             (sender as ListView).SelectedItem = null;
+        }
+
+        private void filterEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.FilterList(e.NewTextValue);
         }
     }
 }

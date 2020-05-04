@@ -1,0 +1,65 @@
+[
+	{
+		"EventName": "New York ComicCon",
+		"city": "New York",
+		"state": "NY",
+		"attendance": 240000,
+		"date": "06/01/2017"
+	},
+	{
+		"EventName": "New York ComicCon",
+		"city": "New York",
+		"state": "NY",
+		"attendance": 250000,
+		"date": "06/01/2018"
+	},
+	{
+		"EventName": "New York ComicCon",
+		"city": "New York",
+		"state": "NY",
+		"attendance": 257000,
+		"date": "06/01/2019"
+	},
+	{
+		"EventName": "ComicCon",
+		"city": "San Diego",
+		"state": "CA",
+		"attendance": 130000,
+		"date": "06/01/2017"
+	},
+	{
+		"EventName": "ComicCon",
+		"city": "San Diego",
+		"state": "CA",
+		"attendance": 140000,
+		"date": "06/01/2018"
+	},
+	{
+		"EventName": "ComicCon",
+		"city": "San Diego",
+		"state": "CA",
+		"attendance": 150000,
+		"date": "06/01/2019"
+	},
+	{
+		"EventName": "HeroesCon",
+		"city": "Charlotte",
+		"state": "NC",
+		"attendance": 40000,
+		"date": "06/01/2017"
+	},
+	{
+		"EventName": "HeroesCon",
+		"city": "Charlotte",
+		"state": "NC",
+		"attendance": 45000,
+		"date": "06/01/2018"
+	},
+	{
+		"EventName": "HeroesCon",
+		"city": "Charlotte",
+		"state": "NC",
+		"attendance": 50000,
+		"date": "06/01/2019"
+	}
+]

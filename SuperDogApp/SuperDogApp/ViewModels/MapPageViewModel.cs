@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
+using Xamarin.Forms.GoogleMaps;
 
 namespace SuperDogApp.ViewModels
 {
@@ -21,9 +21,9 @@ namespace SuperDogApp.ViewModels
         {
             SearchResultModel = new SearchResultModel();
             ConMap = new Map();
-            ConMap.HasScrollEnabled = true;
-            ConMap.HasZoomEnabled = true;
-            ConMap.IsShowingUser = true;
+            ConMap.UiSettings.ScrollGesturesEnabled = true;
+            ConMap.UiSettings.ZoomControlsEnabled = true;
+            ConMap.UiSettings.MyLocationButtonEnabled = true;
             var searchString = $"{con.City}, {con.State}";
             Name = con.EventName;
             GetLocalPosition(searchString);
@@ -65,9 +65,10 @@ namespace SuperDogApp.ViewModels
                 Pin pin = new Pin
                 {
                     Label = Name,
-                    Address = Direction,
+                    Address = searchString,
                     Type = PinType.SearchResult,
-                    Position = currentposition
+                    Position = currentposition,
+                    Icon = BitmapDescriptorFactory.FromBundle("SuperDogIcon.png")
                 };
                 ConMap.Pins.Add(pin);
             }

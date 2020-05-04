@@ -26,6 +26,7 @@
             </Grid.RowDefinitions>
             <Frame Grid.Row="0">
                 <StackLayout BindingContext="{Binding MathAmounts}">
+                    <Label Text="TEST WORKING EVENTS" x:Name="tester" IsVisible="False" FontSize="Large"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Chosen Event" HorizontalOptions="StartAndExpand"/>
                         <Picker x:Name="eventPicker" HorizontalOptions="EndAndExpand" WidthRequest="200" SelectedIndexChanged="eventPicker_SelectedIndexChanged"/>
@@ -55,10 +56,15 @@
             <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Populate List" Command="{Binding RefreshList}"/>
                 <Button Text="Add Event" Command="{Binding CreateComicCon}"/>
+                <Frame Padding="3">
+                    <StackLayout Spacing="0">
+                        <Label FontSize="9" Text="Filter"/>
+                        <Entry x:Name="filterEntry" Placeholder="Event Name" TextChanged="filterEntry_TextChanged" ScaleY=".8"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
             <Frame Grid.Row="2" CornerRadius="10" BackgroundColor="DarkRed">
-                <ScrollView>
-                    <ListView x:Name="eventList" ItemTapped="eventList_ItemTapped" HasUnevenRows="True">
+                <ListView x:Name="eventList" ItemTapped="eventList_ItemTapped" HasUnevenRows="True">
                         <ListView.Header>
                             <Frame Padding="2" CornerRadius="5">
                                 <StackLayout Orientation="Horizontal" Margin="5,0,5,0">
@@ -78,7 +84,7 @@
                                         <MenuItem Text="See Map" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.MapComicCon}" CommandParameter="{Binding .}" />
                                         <MenuItem Text="Delete" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.DeleteComicCon}" CommandParameter="{Binding .}" IsDestructive="True" />
                                     </ViewCell.ContextActions>
-                                    <Frame BackgroundColor="Yellow" CornerRadius="10" Margin="0,5,0,5" Padding="0">
+                                    <Frame BackgroundColor="Yellow" CornerRadius="10" Margin="0,5,0,5" Padding="0" HeightRequest="50">
                                         <StackLayout Orientation="Horizontal" Margin="5,0,5,0">
                                             <Label Text="{Binding EventName}" WidthRequest="100" Margin="5,0,0,0"/>
                                             <Label Text="{Binding State}" HorizontalOptions="CenterAndExpand"/>
@@ -87,10 +93,9 @@
                                         </StackLayout>
                                     </Frame>
                                 </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                </ScrollView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
             </Frame>
         </Grid>
     </ContentPage.Content>

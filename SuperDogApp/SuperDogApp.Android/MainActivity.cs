@@ -26,6 +26,7 @@ namespace SuperDogApp.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

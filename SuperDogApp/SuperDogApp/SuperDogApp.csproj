@@ -11,10 +11,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="seed.JSON" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="seed.JSON" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.2.0" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="4.6.0.726" />
   </ItemGroup>
 

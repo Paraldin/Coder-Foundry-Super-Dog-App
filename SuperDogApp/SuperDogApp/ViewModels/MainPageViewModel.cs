@@ -14,8 +14,10 @@ namespace SuperDogApp.ViewModels
     public class MainPageViewModel
     {
         private readonly INavigation _nav;
+        private readonly Page _page;
 
         public ObservableCollection<ComicCon> ComicCons { get; private set; }
+        private IEnumerable<ComicCon> BaseList { get; set; }
         public ObservableCollection<string> SelectionOptions { get; private set; }
         public MathViewModel MathAmounts { get; private set; }
         public ICommand RefreshList { get; }
@@ -24,7 +26,7 @@ namespace SuperDogApp.ViewModels
         public ICommand EditComicCon { get; }
         public ICommand DeleteComicCon { get; }
         public ICommand MapComicCon { get; }
-        public MainPageViewModel(INavigation nav)
+        public MainPageViewModel(INavigation nav, Page page)
         {
             ComicCons = new ObservableCollection<ComicCon>();
             SelectionOptions = new ObservableCollection<string>();
@@ -36,13 +38,20 @@ namespace SuperDogApp.ViewModels
             MapComicCon = new Command<ComicCon>(async (con) => await RenderMapPage(con));
             MathAmounts = new MathViewModel();
             _nav = nav;
+            _page = page;
         }
 
         private async Task RefreshConList()
         {
-            var list = await App.Database.GetConsAsync();
+            BaseList = await App.Database.GetConsAsync();
+            _page.FindByName<Entry>("filterEntry").Text = "";
+            FilterList("");
+        }
+        public void FilterList(string filter)
+        {
             ComicCons.Clear();
-            foreach(var con in list)
+            var filteredList= BaseList.Where(c => c.EventName.ToLower().Contains(filter.ToLower())).ToList();
+            foreach(var con in filteredList)
             {
                 ComicCons.Add(con);
             }
